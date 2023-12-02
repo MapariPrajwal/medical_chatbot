@@ -3,7 +3,7 @@ from langchain.vectorstores import FAISS
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.document_loaders import TextLoader,PyPDFLoader
 
-DATA_PATH = 'input_pdfs/standard_guidelines.pdf'
+DATA_PATH = 'input_pdfs/disease_treatment_guidelines.pdf'
 DB_FAISS_PATH = 'vectorstore/db_faiss'
 
 def create_vector_db():
@@ -14,13 +14,13 @@ def create_vector_db():
   try:
     documents = loader.load()
   except FileNotFoundError:
-    print("Could not access translated_pdfs folder")
+    print("Could not access input pdfs folder")
 
   #documents = loader.load()
 
   print("Documents loaded")
 
-  text_splitter = RecursiveCharacterTextSplitter(chunk_size=400, chunk_overlap=20)
+  text_splitter = RecursiveCharacterTextSplitter(chunk_size=100, chunk_overlap=20)
 
   texts = text_splitter.split_documents(documents)
 
