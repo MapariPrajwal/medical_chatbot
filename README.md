@@ -41,4 +41,4 @@ To set up the Medical Chatbot locally, follow these steps:
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/MapariPrajwal/medical_chatbot.git
-   cd medical-chatbot
+   cd medical_chatbot
