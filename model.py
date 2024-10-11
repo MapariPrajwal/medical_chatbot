@@ -19,15 +19,16 @@ DB_FAISS_PATH = 'vectorstore/db_faiss'
 B_INST, E_INST = "[INST]", "[/INST]"
 B_SYS, E_SYS = "<<SYS>>\n", "\n<</SYS>>\n\n"
 DEFAULT_SYSTEM_PROMPT = """\
-You are a helpful, respectful and honest assistant."""
+You are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe. Your answers should not include any harmful, unethical, racist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature.
+If a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don't know the answer to a question, please don't share false information."""
 
 def get_prompt(instruction, new_system_prompt=DEFAULT_SYSTEM_PROMPT ):
     SYSTEM_PROMPT = B_SYS + new_system_prompt + E_SYS
     prompt_template =  B_INST + SYSTEM_PROMPT + instruction + E_INST
     return prompt_template
 
-sys_prompt = """Always answer as helpfully as possible using the context text provided. Your answers should only answer the question once and not have any text after the answer is done.
-If a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don't know the answer to a question, please don't share false information. """
+sys_prompt = """select response only from stored database"""
+
 instruction = """CONTEXT:/n/n {context}/n
 
 Question: {question}"""
@@ -72,7 +73,7 @@ def retrieval_qa_chain(llm, prompt, db):
 def load_llm():
     # Load the locally downloaded model here
     llm = CTransformers(
-        model="LLM/llama-2-7b.ggmlv3.q2_K.bin",
+        model="llama-2-7b-chat.ggmlv3.q4_K_S.bin",
         model_type="llama",
         max_new_tokens=1024,
         max_tokens=1024,
