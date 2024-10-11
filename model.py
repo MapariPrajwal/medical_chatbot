@@ -1,4 +1,9 @@
 import streamlit as st
+#import sounddevice as sd
+#import numpy as np
+#from io import BytesIO
+#from pydub import AudioSegment
+#import speech_recognition as sr
 from langchain.document_loaders import PyPDFLoader, DirectoryLoader
 from langchain import PromptTemplate
 from langchain.embeddings import HuggingFaceEmbeddings

@@ -8,7 +8,6 @@ DB_FAISS_PATH = 'vectorstore/db_faiss'
 
 def create_vector_db():
 
-  #loader = TextLoader(DATA_PATH, encoding='utf-8')
   loader = PyPDFLoader(DATA_PATH)
 
   try:
@@ -20,7 +19,7 @@ def create_vector_db():
 
   print("Documents loaded")
 
-  text_splitter = RecursiveCharacterTextSplitter(chunk_size=400, chunk_overlap=20)
+  text_splitter = RecursiveCharacterTextSplitter(chunk_size=200, chunk_overlap=20)
 
   texts = text_splitter.split_documents(documents)
 
